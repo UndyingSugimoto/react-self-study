@@ -41,6 +41,7 @@
     ]
   },
   "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
     "jest-styled-components": "^7.0.2",
     "stylelint": "^13.3.3",
     "stylelint-config-recommended": "^3.0.0",
