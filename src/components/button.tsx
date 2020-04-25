@@ -1,15 +1,21 @@
 import styled from "styled-components";
+import React from "react";
 
-type PropType = {
+const Button = () => {
+  return <Button></Button>;
+};
+
+type StyledButtonProps = {
   main: string;
 };
 
-const Button = styled.button<PropType>`
+const StyledButton = styled.button<StyledButtonProps>`
   color: red;
   background: ${(theme) => theme.main};
 `;
-Button.defaultProps = {
+StyledButton.defaultProps = {
   theme: {
     main: "#0088ee",
   },
 };
+export default Button;
