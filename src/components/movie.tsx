@@ -9,20 +9,26 @@ export type MovieEntity = {
   Year: string;
 };
 
-const Movie = (movie: MovieEntity) => {
+export type MovieProps = {
+  movie: MovieEntity;
+};
+
+const Movie: React.FC<MovieProps> = (props: MovieProps) => {
   const poster =
-    movie.Poster === "N/A" ? DEFAULT_PLACEHOLDER_IMAGE : movie.Poster;
+    props.movie.Poster === "N/A"
+      ? DEFAULT_PLACEHOLDER_IMAGE
+      : props.movie.Poster;
   return (
     <div className="movie">
-      <h2>{movie.Title}</h2>
+      <h2>{props.movie.Title}</h2>
       <div>
         <img
           width="200"
-          alt={`The movie titled: ${movie.Title}`}
+          alt={`The movie titled: ${props.movie.Title}`}
           src={poster}
         />
       </div>
-      <p>({movie.Year})</p>
+      <p>({props.movie.Year})</p>
     </div>
   );
 };

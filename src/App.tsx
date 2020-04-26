@@ -1,8 +1,9 @@
 import React, { useReducer, useEffect } from "react";
-import "../App.css";
+import "./App.css";
 import Header from "./components/header";
 import Search from "./components/search";
 import Movie, { MovieEntity } from "./components/movie";
+import axios from "axios";
 
 const MOVIE_API_URL = "https://www.omdbapi.com/?s=man&apikey=4a3b711b";
 
@@ -16,8 +17,13 @@ type Action = {
     | "SEARCH_MOVIES_REQUEST"
     | "SEARCH_MOVIES_SUCCESS"
     | "SEARCH_MOVIES_FAILURE";
-  payload: MovieEntity[];
-  error: string;
+  payload?: MovieEntity[];
+  error?: string;
+};
+type APIRes = {
+  Search: MovieEntity[];
+  totalResults: number;
+  Response: string;
 };
 
 const initialState: RootState = {
@@ -58,12 +64,15 @@ const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    fetch(MOVIE_API_URL)
-      .then((response) => response.json())
-      .then((jsonResponse) => {
+    axios
+      .get<APIRes>(MOVIE_API_URL)
+      .then()
+      .then((result) => {
+        console.log("result :");
+        console.log(result);
         dispatch({
           type: "SEARCH_MOVIES_SUCCESS",
-          payload: jsonResponse.Search,
+          payload: result.data.Search,
         });
       });
   }, []);
@@ -72,7 +81,6 @@ const App = () => {
     dispatch({
       type: "SEARCH_MOVIES_REQUEST",
     });
-
     fetch(`https://www.omdbapi.com/?s=${searchValue}&apikey=4a3b711b`)
       .then((response) => response.json())
       .then((jsonResponse) => {
@@ -91,7 +99,7 @@ const App = () => {
   };
 
   const { movies, errorMessage, loading } = state;
-
+  console.log(movies);
   return (
     <div className="App">
       <Header text="HOOKED" />
@@ -103,7 +111,7 @@ const App = () => {
         ) : errorMessage ? (
           <div className="errorMessage">{errorMessage}</div>
         ) : (
-          movies.map((movie: MovieEntity, index: string) => (
+          (movies as MovieEntity[]).map((movie: MovieEntity, index) => (
             <Movie key={`${index}-${movie.Title}`} movie={movie} />
           ))
         )}
