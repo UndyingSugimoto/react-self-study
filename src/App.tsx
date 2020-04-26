@@ -4,6 +4,7 @@ import Header from "./components/header";
 import Search from "./components/search";
 import Movie, { MovieEntity } from "./components/movie";
 import axios from "axios";
+import styled from "styled-components";
 
 const MOVIE_API_URL = "https://www.omdbapi.com/?s=man&apikey=4a3b711b";
 
@@ -101,23 +102,43 @@ const App = () => {
   const { movies, errorMessage, loading } = state;
   console.log(movies);
   return (
-    <div className="App">
+    <StyledApp>
       <Header text="HOOKED" />
       <Search search={search} />
-      <p className="App-intro">Sharing a few of our favourite movies</p>
-      <div className="movies">
+      <p>Sharing a few of our favourite movies</p>
+      <StyledMovies>
         {loading && !errorMessage ? (
           <span>loading... </span>
         ) : errorMessage ? (
-          <div className="errorMessage">{errorMessage}</div>
+          <StyledErrorMessage>{errorMessage}</StyledErrorMessage>
         ) : (
           (movies as MovieEntity[]).map((movie: MovieEntity, index) => (
             <Movie key={`${index}-${movie.Title}`} movie={movie} />
           ))
         )}
-      </div>
-    </div>
+      </StyledMovies>
+    </StyledApp>
   );
 };
+
+const StyledApp = styled.div`
+  text-align: center;
+
+  & p {
+    font-size: large;
+  }
+`;
+
+const StyledMovies = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+`;
+
+const StyledErrorMessage = styled.div`
+  margin: auto;
+  font-weight: bold;
+  color: rgb(161, 15, 15);
+`;
 
 export default App;

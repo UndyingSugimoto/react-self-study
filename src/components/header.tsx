@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 type HeaderProps = {
   text: string;
@@ -6,10 +7,27 @@ type HeaderProps = {
 
 const Header = (props: HeaderProps) => {
   return (
-    <header className="App-header">
+    <StyledHeader>
       <h2>{props.text}</h2>
-    </header>
+    </StyledHeader>
   );
 };
+
+const StyledHeader = styled.header`
+  background-color: #282c34;
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+
+  & h2 {
+    margin: 0;
+  }
+`;
 
 export default Header;

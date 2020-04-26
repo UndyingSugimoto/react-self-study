@@ -1,4 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
+import styled from "styled-components";
 
 type SearchProps = {
   search: Function;
@@ -24,15 +25,43 @@ const Search = (props: SearchProps) => {
   };
 
   return (
-    <form className="search">
+    <StyledSearch>
       <input
         value={searchValue}
         onChange={handleSearchInputChanges}
         type="text"
       />
       <input onClick={callSearchFunction} type="submit" value="SEARCH" />
-    </form>
+    </StyledSearch>
   );
 };
+
+const StyledSearch = styled.form`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+
+  & input[type="submit"] {
+    padding: 5px;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    width: 80px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  & input[type="submit"]:hover {
+    background-color: #282c34;
+    color: antiquewhite;
+  }
+
+  & > input[type="text"] {
+    width: 40%;
+    min-width: 170px;
+  }
+`;
 
 export default Search;
