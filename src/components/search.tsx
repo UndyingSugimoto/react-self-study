@@ -5,20 +5,22 @@ type SearchProps = {
   search: Function;
 };
 
-const Search = (props: SearchProps) => {
+const Search: React.FC<SearchProps> = (props: SearchProps) => {
   const [searchValue, setSearchValue] = useState("");
 
-  const handleSearchInputChanges = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchInputChanges = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setSearchValue(e.target.value);
   };
 
-  const resetInputField = () => {
+  const resetInputField = (): void => {
     setSearchValue("");
   };
 
   const callSearchFunction = (
     e: React.MouseEvent<HTMLInputElement, MouseEvent>
-  ) => {
+  ): void => {
     e.preventDefault();
     props.search(searchValue);
     resetInputField();

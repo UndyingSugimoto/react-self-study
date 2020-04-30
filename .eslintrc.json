@@ -12,14 +12,12 @@
     "@typescript-eslint",
     "react-hooks"
   ],
-  "env": { "node": true, "es6": true },
+  "env": { "browser": true, "node": true, "es6": true },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
-    "project": "./tsconfig.json"
-  },
-  "ecmaFeatures": {
-    "jsx": true
+    "project": "./tsconfig.json",
+    "extraFileExtensions": "['.ts','.tsx']"
   },
   "rules": {
     // ...

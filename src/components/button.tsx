@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 
-const Button = () => {
+const Button: React.FC = () => {
   return <Button></Button>;
 };
 
@@ -11,7 +11,7 @@ type StyledButtonProps = {
 
 const StyledButton = styled.button<StyledButtonProps>`
   color: red;
-  background: ${(theme) => theme.main};
+  background: ${(theme): string => theme.main};
 `;
 StyledButton.defaultProps = {
   theme: {

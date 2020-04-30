@@ -54,8 +54,8 @@ type StyledMovieProps = {
 
 const MovieImg = styled.img<StyledMovieProps>`
   width: 200;
-  alt: ${(props) => `The movie titled: ${props.title}`};
-  src: ${(props) => props.poster};
+  alt: ${(props): string => `The movie titled: ${props.title}`};
+  src: ${(props): string => props.poster};
 `;
 
 export default Movie;

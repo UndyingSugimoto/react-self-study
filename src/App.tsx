@@ -61,7 +61,7 @@ const reducer: React.Reducer<RootState, Action> = (
   }
 };
 
-const App = () => {
+const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const App = () => {
       });
   }, []);
 
-  const search = (searchValue: string) => {
+  const search = (searchValue: string): void => {
     dispatch({
       type: "SEARCH_MOVIES_REQUEST",
     });

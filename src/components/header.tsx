@@ -5,7 +5,7 @@ type HeaderProps = {
   text: string;
 };
 
-const Header = (props: HeaderProps) => {
+const Header: React.FC<HeaderProps> = (props: HeaderProps) => {
   return (
     <StyledHeader>
       <h2>{props.text}</h2>
