@@ -15,6 +15,5 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "include": ["src"],
-  "typeRoots": ["./index.d.ts"]
+  "include": ["src", "@types"]
 }
